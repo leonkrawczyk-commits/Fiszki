@@ -2,14 +2,17 @@
 #define _FISZKI_
 #include <iostream>
 
-class fiszki{
+class fiszka{
     public:
+    fiszka(const std::string f1, const std::string b1);
+
     std::string GetFront();
     std::string GetBack();
-    void MarkCorrect();
-    void MarkWrong();
-    double GetDifficulty();
-
+    void MarkCorrect(); //zwieksza c fiszki o 1 a potem zmniejsza jej d zgdonie z algorytmem 
+    void MarkWrong(); //zwieksza w, zwieksza d
+    double GetDifficulty(); //fiszka bedzie wyswietlana w powtorce tylko gdy jej d jest >=0
+    void DifficultyPlus(); //gdy fiszka nie zostanie wywolana w powtorce, jej d zwieksza sie o jeden tak aby miala szanse jeszcze kiedys sie pojawic
+    
 
 
     private:

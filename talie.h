@@ -1,18 +1,25 @@
-#ifndef _TALIE_
-#define _TALIE_
+#ifndef _TALIA_
+#define _TALIA_
 #include <iostream>
+#include <vector>
+#include "fiszki.h"
 
 
-class talie{
+class talia{
 
     public:
-    void AddFiszka(std::string name1){};
-    void RemoveFiszka(){};
+
+    talia(const std::string name1);
+
+    void DodajFiszka();
+    void UsunFiszka();
+    void Powtorka();
+    void WypiszFiszki();
     
 
-
     private:
-    std::string name;
+    std::string name; //nazwa talii
+    std::vector<fiszka> fiszki; //lista fiszek w danej talii
 };
 
 

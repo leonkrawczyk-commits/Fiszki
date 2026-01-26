@@ -1,28 +1,36 @@
 #include "fiszki.h"
 
-fiszki::fiszki(){
-    
+fiszka::fiszka(const std::string f1, const std::string b1){
+    c = 0;
+    w = 0;
+    d = 1;
+    f = f1;
+    b = b1;
 };
 
-std::string GetFront(std::string f){
+std::string fiszka::GetFront(){
     return f;
 };
 
-std::string GetBack(std::string b){
+std::string fiszka::GetBack(){
     return b;
 };
 
-void MarkCorrect(int c,int w,double d){
+void fiszka::MarkCorrect(){
     c = c + 1;
     d = d + c/(w+1);
 };
 
-void MarkWrong(int c,int w,double d){
+void fiszka::MarkWrong(){
     w = w + 1;
     d = d - w/(c+1);
 };
 
-double GetDifficulty(double d){
+double fiszka::GetDifficulty(){
     return d;
+};
+
+void fiszka::DifficultyPlus(){
+    d = d + 1;
 };
 
