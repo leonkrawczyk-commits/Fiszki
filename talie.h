@@ -15,6 +15,7 @@ class talia{
     void UsunFiszka();
     void Powtorka();
     void WypiszFiszki();
+    std::string GetName();
     
 
     private:

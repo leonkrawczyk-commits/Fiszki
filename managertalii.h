@@ -3,11 +3,11 @@
 #include "talie.h"
 #include <vector>
 
-class Manager{
+class manager{
 
     public:
-    void AddTalia();
-    void RemoveTalia();
+    void DodajTalia();
+    void UsunTalia();
     void WypiszTalie();
     talia* WybierzTalie();
     
@@ -15,5 +15,6 @@ class Manager{
     std::vector<talia> talie;
 
 };
+
 
 #endif

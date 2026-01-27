@@ -13,11 +13,15 @@ void talia::DodajFiszka(){
     std::string f;
     std::string b;
 
+
+
     std::cout<<"Przod fiszki: ";
     std::getline(std::cin, f);
+    
 
     std::cout<<"Tyl fiszki: ";
     std::getline(std::cin, b);
+   
 
     fiszki.emplace_back(f, b);
     std::cout<< "Fiszka dodana poprawnie" <<std::endl;
@@ -25,7 +29,6 @@ void talia::DodajFiszka(){
 };
 
 void talia::UsunFiszka(){
-
     int index;
 
     if(fiszki.empty()){
@@ -34,19 +37,22 @@ void talia::UsunFiszka(){
     };
 
     WypiszFiszki();
+    std::cout<<"0. Nie chce usuwac fiszki"<<std::endl;
+
+
     std::cout<< "Podaj numer fiszki do usuniecia: ";
 
     std::cin >> index;
-
-    if(index<1){
-        std::cout<<"Nieprawidlowy numer fiszki"<<std::endl;
+    
+    if(index==0){
         return;
-    }
+    };
 
-    else if(index>fiszki.size()){
+    if(index<1 || index>fiszki.size()){
         std::cout<<"Nieprawidlowy numer fiszki"<<std::endl;
         return;
     };
+
 
     fiszki.erase(fiszki.begin() + index -1);
     std::cout<<"Fiszka usunieta"<<std::endl;
@@ -68,7 +74,7 @@ void talia::WypiszFiszki(){
 void talia::Powtorka(){
 
     if(fiszki.empty()){
-        std::cout<<"Talia pusta";
+        std::cout<<"Talia pusta"<<std::endl;
         return;
     };
 
@@ -83,14 +89,18 @@ void talia::Powtorka(){
         };
     }; //petla tworzy vector indeksow fiszek ktore sa do powtorki, tak aby nie operowac bezposrednio na fiszkach 
 
-    
+    if(kolejka.empty()){
+        std::cout<<"Brak fiszek potrzebujacych powtorki"<<std::endl;
+        return;
+    };
 
     while(!kolejka.empty()){
 
         int index = kolejka.back(); //bierzemy indeks fiszki (bedzie szlo od konca tabeli ale nie ma znaczenia)
         
         kolejka.pop_back(); //usuwamy index z kolejki
-        
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
         std::cout<<"Przod: "<<std::endl;
         std::cout<<fiszki[index].GetFront()<<std::endl;
         std::cout<<"Nacisnij ENTER aby zobaczyc odpowiedz."<<std::endl;
@@ -101,12 +111,14 @@ void talia::Powtorka(){
 
         char odp;
         while(true){
+
             std::cin >> odp;
-            if(odp == 'T', odp == 't'){
+
+            if(odp == 'T' || odp == 't'){
                 fiszki[index].MarkCorrect();
                 break;
 
-            }else if(odp == 'N', odp == 'n'){
+            }else if(odp == 'N' || odp == 'n'){
                 fiszki[index].MarkWrong();
                 kolejka.push_back(kolejka.at(0)); //kopiujemy index ostatniej (pierwszej) fiszki w kolejce na pierwsze miejsce w kolejce
                 kolejka.at(0) = index; //w miejscu ostatniego indexu wpisujemy index fiszki na ktora opd byla bledna
@@ -118,4 +130,8 @@ void talia::Powtorka(){
             }; //petla powtorzy sie tylko gdy uzytkownik poda nieprawidlowy input
         };
     };
+};
+
+std::string talia::GetName(){
+    return name;
 };

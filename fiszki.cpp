@@ -18,12 +18,12 @@ std::string fiszka::GetBack(){
 
 void fiszka::MarkCorrect(){
     c = c + 1;
-    d = d + c/(w+1);
+    d = d - c/(w+1);
 };
 
 void fiszka::MarkWrong(){
     w = w + 1;
-    d = d - w/(c+1);
+    d = d + w/(c+1);
 };
 
 double fiszka::GetDifficulty(){
