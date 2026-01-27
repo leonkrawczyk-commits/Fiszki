@@ -30,7 +30,7 @@ void menu::MenuTalii(talia& name1) {
         PokazMenuTalii(name1);
 
         std::cin >> wybor;
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //Przekopiowalem to z internetu i wstawilem po kazdym cin zeby wyczyscic bufor ale nie do konca rozumiem. Potem przy uzywaniu programu patrzylem gdzie sie jakos dziwnie zatrzymuje i zmienialem umiejscowienia tej funkcji
+        
 
         switch(wybor) {
             case 1:{ 
@@ -51,8 +51,11 @@ void menu::MenuTalii(talia& name1) {
             }
             default:{
                 std::cout << "Nieprawidlowa opcja."<<std::endl;
+                w_talii = false;
             }
+
         };
+       
     };
 };
 
@@ -84,7 +87,10 @@ void menu::run() {
                 w_menu = false; 
                 break;
             }
-            default: std::cout << "Nieprawidlowa opcja"<<std::endl;
+            default: {
+                std::cout << "Nieprawidlowa opcja"<<std::endl;
+                w_menu = false;
+            };
         };
     };
 };

@@ -15,6 +15,7 @@ class fiszka{
     
 
 
+    
     private:
     std::string f; //przod fiszki
     std::string b; //tyl fiszki

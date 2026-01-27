@@ -10,6 +10,8 @@ talia::talia(const std::string name1){
 
 void talia::DodajFiszka(){
 
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); 
+
     std::string f;
     std::string b;
 
@@ -71,7 +73,11 @@ void talia::WypiszFiszki(){
     };
 };
 
-void talia::Powtorka(){
+
+std::string talia::GetName(){
+    return name;
+
+};void talia::Powtorka(){
 
     if(fiszki.empty()){
         std::cout<<"Talia pusta"<<std::endl;
@@ -96,9 +102,9 @@ void talia::Powtorka(){
 
     while(!kolejka.empty()){
 
-        int index = kolejka.back(); //bierzemy indeks fiszki (bedzie szlo od konca tabeli ale nie ma znaczenia)
+        int index = kolejka.front(); //bierzemy indeks fiszki 
         
-        kolejka.pop_back(); //usuwamy index z kolejki
+        kolejka.erase(kolejka.begin()); //usuwamy index z kolejki
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
         std::cout<<"Przod: "<<std::endl;
@@ -120,18 +126,13 @@ void talia::Powtorka(){
 
             }else if(odp == 'N' || odp == 'n'){
                 fiszki[index].MarkWrong();
-                kolejka.push_back(kolejka.at(0)); //kopiujemy index ostatniej (pierwszej) fiszki w kolejce na pierwsze miejsce w kolejce
-                kolejka.at(0) = index; //w miejscu ostatniego indexu wpisujemy index fiszki na ktora opd byla bledna
-                // w ten sposob fiszka na ktora uzytkownik odpowiedzial zle wroci w tej samej powtorce na samym koncu
+                kolejka.push_back(index); //dodajemy index na koniec kolejki
                 break;
 
             }else {
-                std::cout<<"Nieprawidlowy input"<<std::endl;
+                std::cout<<"Nieprawidlowy input. T/N?"<<std::endl;
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             }; //petla powtorzy sie tylko gdy uzytkownik poda nieprawidlowy input
         };
     };
-};
-
-std::string talia::GetName(){
-    return name;
 };
